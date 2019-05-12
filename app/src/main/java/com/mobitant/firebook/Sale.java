@@ -17,8 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,11 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Sale extends Fragment implements ServerResponse {
-    public static RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private EditText search_text;
     private ImageButton barcode_search;
     private LinearLayoutManager llm;
-    public SaleRecyclerViewAdapter recyclerViewAdapter;
+    private SaleRecyclerViewAdapter recyclerViewAdapter;
     private Button search_button;
     private String search;
     Sale thiss = this;
@@ -81,16 +79,6 @@ public class Sale extends Fragment implements ServerResponse {
             }
         });
 
-        barcode_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new IntentIntegrator(getActivity()).initiateScan();
-            }
-        });
-
-
-
         return root;
 
     }
@@ -126,4 +114,5 @@ public class Sale extends Fragment implements ServerResponse {
 
     }
 }
+
 
