@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,11 +28,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Sale extends Fragment implements ServerResponse {
-    private RecyclerView recyclerView;
+    public static RecyclerView recyclerView;
     private EditText search_text;
     private ImageButton barcode_search;
     private LinearLayoutManager llm;
-    private SaleRecyclerViewAdapter recyclerViewAdapter;
+    public SaleRecyclerViewAdapter recyclerViewAdapter;
     private Button search_button;
     private String search;
     Sale thiss = this;
@@ -55,7 +57,7 @@ public class Sale extends Fragment implements ServerResponse {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 recyclerView.clearDisappearingChildren();
             }
-
+    //
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -78,6 +80,16 @@ public class Sale extends Fragment implements ServerResponse {
                 new Server().onDb("https://book.interpark.com/api/search.api", parameter, thiss);
             }
         });
+
+        barcode_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new IntentIntegrator(getActivity()).initiateScan();
+            }
+        });
+
+
 
         return root;
 
