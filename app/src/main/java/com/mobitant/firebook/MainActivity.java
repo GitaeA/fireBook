@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
     public SaleRecyclerViewAdapter recyclerViewAdapter;
     public static FragmentManager fragmentManager;
     public static FragmentTransaction transaction;
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -47,13 +48,6 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
         new Server().onDb("https://book.interpark.com/api/search.api", parameter, this);
     }
 
-    // FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
-//    public FragmentManager fragmentManager = getSupportFragmentManager();
-    // 4개의 메뉴에 들어갈 Fragment들
-//    private Recommend menu1Fragment = new Recommend();
-//    private Sale menu2Fragment = new Sale();
-    // private Menu3Fragment menu3Fragment = new Menu3Fragment();
-    // private Menu4Fragment menu4Fragment = new Menu4Fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
 //        FragmentTransaction transaction = fragmentManager.beginTransaction();
 //        transaction.replace(R.id.frame_layout, menu1Fragment).commitAllowingStateLoss();
         fragmentManager = getSupportFragmentManager();
-         transaction = fragmentManager.beginTransaction();
+        transaction = fragmentManager.beginTransaction();
 
-         transaction.replace(R.id.frame_layout,new Recommend());
-         transaction.addToBackStack(null);
-         transaction.commit();
+        transaction.replace(R.id.frame_layout, new Recommend());
+        transaction.addToBackStack(null);
+        transaction.commit();
 
         // bottomNavigationView의 아이템이 선택될 때 호출될 리스너 등록
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
                         break;
                     }
                     case R.id.navigation_menu3: {
-                       // transaction.replace(R.id.frame_layout, menu3Fragment).commitAllowingStateLoss();
+                        // transaction.replace(R.id.frame_layout, menu3Fragment).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_menu4: {
