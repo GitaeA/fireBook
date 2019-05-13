@@ -14,6 +14,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import static com.mobitant.firebook.MainActivity.fragmentManager;
+import static com.mobitant.firebook.MainActivity.transaction;
+
 public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerViewAdapter.ViewHolder> {
     private Activity activity;
     private List<BookCompo> compo;
@@ -72,21 +75,21 @@ public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerVi
         viewHolder.book_author.setText(data.getBook_author());
         viewHolder.book_publish.setText(data.getBook_publish());
 
- /*        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Compo data = compo.get(i);
+//                Compo data = compo.get(i);
 
-                ft=fm.beginTransaction();
-                ft.replace(R.id.frame,new ());
-                ft.addToBackStack(null);
-                ft.commit();
+                transaction=fragmentManager.beginTransaction();
+                transaction.replace(R.id.frame_layout,new SaleClick());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }
-    */        //   click event
+           //   click event
 
-    }
+
 
 
     private void removeItemView(int position) {
