@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
                         break;
                     }
                     case R.id.navigation_menu3: {
-                        //  transaction.replace(R.id.frame_layout, menu3Fragment).commitAllowingStateLoss();
+                       // transaction.replace(R.id.frame_layout, menu3Fragment).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.navigation_menu4: {
