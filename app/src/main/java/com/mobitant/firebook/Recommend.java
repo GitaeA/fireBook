@@ -57,30 +57,11 @@ public class Recommend extends Fragment implements ServerResponse {
     @Override
     public void processFinish(String output) {
 
-        try {
-            JSONArray jsonArray = new JSONArray(output);
-
-            recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title")
-                    , jsonArray.getJSONObject(0).getString("image_url")));
-
-            rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
-            recyclerView.setAdapter(rAdapter);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
 //        try {
 //            JSONArray jsonArray = new JSONArray(output);
 //
-//            for(int i=0; i < jsonArray.length(); i++){
-//
-//                recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title"),
-//                        jsonArray.getJSONObject(0).getString("image_url")));
-//
-//
-//            }
+//            recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title")
+//                    , jsonArray.getJSONObject(0).getString("image_url")));
 //
 //            rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
 //            recyclerView.setAdapter(rAdapter);
@@ -88,6 +69,25 @@ public class Recommend extends Fragment implements ServerResponse {
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
+
+
+        try {
+            JSONArray jsonArray = new JSONArray(output);
+
+            for(int i=0; i < 10; i++){
+
+                recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title"),
+                        jsonArray.getJSONObject(0).getString("image_url")));
+
+
+            }
+
+            rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
+            recyclerView.setAdapter(rAdapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
