@@ -4,7 +4,7 @@ var app = express();
 var pg = require('pg');
 var child_process = require('child_process');
 var exec = child_process.exec;
-var cmd = "python3 pytest.py"
+var cmd = "python3 pytest.py 1776"
 
 // DB: AWS RDS connection
 var db = new pg.Pool({
@@ -23,14 +23,14 @@ app.listen(4000, function (err, res) {
 
 //python start
 app.get('/test', (req, res) => {
-        exec(cmd, (err, stdout, stderr) => {
-                if(err){
-                        console.error(err);
-                        return;
-                }
-                console.log('/rtest');
-                res.send(stdout);
-        });
+    exec(cmd, (err, stdout, stderr) => {
+            if(err){
+                    console.error(err);
+                    return;
+            }
+            console.log('/python test');
+            res.send(stdout);
+    });
 });
 
 // ======================= DB connect ==========================

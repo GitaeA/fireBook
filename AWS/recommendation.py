@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import json
 import psycopg2
+import sys
 
 # AWS RDS connect
 conn_string ="host='bookingdata.c7bt9br99pg3.ap-northeast-2.rds.amazonaws.com' dbname ='Booking' user='gitae' password='booking123'"
@@ -17,7 +18,7 @@ books = pd.DataFrame(books_table)
 books.columns = [desc[0] for desc in cur.description]
 
 # data filtering
-books = books[['book_id', 'title', 'language' ]]
+books = books[['book_id', 'title', 'language', 'image_url']]
 books = books[books['language'] == 'eng']
 
 # Load ratings data
@@ -32,7 +33,6 @@ ratings.columns = [desc[0] for desc in cur.description]
 books.book_id = pd.to_numeric(books.book_id, errors='coerce')
 ratings.book_id = pd.to_numeric(ratings.book_id, errors='coerce')
 
-
 join_data = pd.merge(ratings, books, on='book_id', how='inner')
 
 join_data.rating.astype(float)
@@ -46,6 +46,7 @@ def pearsonCor(x, y):
     SSx = x - x.mean()
     SSy = y - y.mean()
     return np.sum(SSx * SSy) / np.sqrt(np.sum(SSx ** 2) * np.sum(SSy ** 2))
+
 
 
 # Recoomend
@@ -70,9 +71,13 @@ def recommend(input_book, matrix, n):
 
     return result[:n]
 
-recommend_result = recommend('1776', matrix, 10)
+recommend_result = recommend(sys.argv[1], matrix, 10)
 
-# Json conversion
-json_result = json.dumps(dict(recommend_result))
+# Dataframe
+pdRecommend = pd.DataFrame(recommend_result, columns = ['Title', 'Correlation'])
 
-print(json_result)
+# Json conversion , book name and image_url
+for i in range(len(pdRecommend)):
+    book_name = recommend_result[i][0]
+    book_url = books[books['title'].isin([book_name])]
+    print(book_url[['title','image_url']].to_json(orient='table'))
