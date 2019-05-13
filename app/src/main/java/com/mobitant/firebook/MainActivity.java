@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
     String barcode_result;
     List<BookCompo> compo = new ArrayList<>();
     public SaleRecyclerViewAdapter recyclerViewAdapter;
-
+    public static FragmentManager fragmentManager;
+    public static FragmentTransaction transaction;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -47,10 +48,10 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
     }
 
     // FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
-    public FragmentManager fragmentManager = getSupportFragmentManager();
+//    public FragmentManager fragmentManager = getSupportFragmentManager();
     // 4개의 메뉴에 들어갈 Fragment들
-    private Recommend menu1Fragment = new Recommend();
-    private Sale menu2Fragment = new Sale();
+//    private Recommend menu1Fragment = new Recommend();
+//    private Sale menu2Fragment = new Sale();
     // private Menu3Fragment menu3Fragment = new Menu3Fragment();
     // private Menu4Fragment menu4Fragment = new Menu4Fragment();
 
@@ -64,21 +65,33 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         // 첫 화면 지정
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame_layout, menu1Fragment).commitAllowingStateLoss();
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        transaction.replace(R.id.frame_layout, menu1Fragment).commitAllowingStateLoss();
+        fragmentManager = getSupportFragmentManager();
+         transaction = fragmentManager.beginTransaction();
+
+         transaction.replace(R.id.frame_layout,new Recommend());
+         transaction.addToBackStack(null);
+         transaction.commit();
 
         // bottomNavigationView의 아이템이 선택될 때 호출될 리스너 등록
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
+//                FragmentTransaction transaction = fragmentManager.beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.navigation_menu1: {
-                        transaction.replace(R.id.frame_layout, menu1Fragment).commitAllowingStateLoss();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.frame_layout, new Recommend());
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                         break;
                     }
                     case R.id.navigation_menu2: {
-                        transaction.replace(R.id.frame_layout, menu2Fragment).commitAllowingStateLoss();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.frame_layout, new Sale());
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                         break;
                     }
                     case R.id.navigation_menu3: {
