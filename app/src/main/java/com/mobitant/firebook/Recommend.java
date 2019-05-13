@@ -25,9 +25,9 @@ public class Recommend extends Fragment implements ServerResponse {
     RecommendRecyclerViewAdapter rAdapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
-    Recommend main_this = this;
+    Recommend recommend = this ;
     List<RecommendedBook> recommend_items = new ArrayList<>();
-
+    Button Recommend_button;
 
     @Nullable
     @Override
@@ -36,21 +36,21 @@ public class Recommend extends Fragment implements ServerResponse {
 
         View main_activity = inflater.inflate(R.layout.fragment_recommend, container, false);
 
-        Button Recommend_button;
         Recommend_button = main_activity.findViewById(R.id.recommend_Button);
         recyclerView = main_activity.findViewById(R.id.Recommend_rcy);
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
 
         Recommend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Server().onDb("http://54.180.109.133:4000/test",null,main_this);
+                new Server().onDb("http://54.180.109.133:4000/test",null,recommend);
             }
         });
 
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
 
-        return inflater.inflate(R.layout.fragment_recommend, container, false);
+
+        return main_activity;
 
     }
 
