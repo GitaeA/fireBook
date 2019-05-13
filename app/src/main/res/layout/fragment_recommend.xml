@@ -3,9 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <Button
+        android:id="@+id/recommend_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="책 추천" />
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="MENU 1"/>
+        android:id="@+id/Recommend_rcy">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
 </LinearLayout>
