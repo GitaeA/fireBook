@@ -47,14 +47,27 @@ app.get('/ing', (req, res) => {
 
 });
 
-app.get('/logintest', (req, res) => {
+app.get('/jointest', (req, res) => {
         db.connect(function (err, client, done) {
                 client.query(
                         'insert into test_user values(\'' + req.query.id + '\',\'' + req.query.pw + '\') '
                         , function (err, result) {
                                 done();
                                 res.send(result.rows);
-                                console.log('logintest');   //test ��
+                                console.log('jointest');   //join
+                        });
+        });
+
+});
+
+app.get('/logintest', (req, res) => {
+        db.connect(function (err, client, done) {
+                client.query(
+                        'select pw from test_user where id=\'' + req.query.id + '\' '
+                        , function (err, result) {
+                                done();
+                                res.send(result.rows);
+                                console.log('logintest');   //login
                         });
         });
 
