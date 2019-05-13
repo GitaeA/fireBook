@@ -11,15 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Recommend extends Fragment implements ServerResponse{
+public class Recommend extends Fragment implements ServerResponse {
 
-    private Button Recommend_button;
+    String text;
+    Button Recommend_button;
     RecommendRecyclerViewAdapter rAdapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -31,19 +33,19 @@ public class Recommend extends Fragment implements ServerResponse{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
-        View mainActivity = inflater.inflate(R.layout.fragment_recommend, container, false);
 
-        Recommend_button = mainActivity.findViewById(R.id.recommend_button);
-        rAdapter = new RecommendRecyclerViewAdapter(recommend_items);
-        recyclerView = mainActivity.findViewById(R.id.Recommend_rcy);
+        View main_activity = inflater.inflate(R.layout.fragment_recommend, container, false);
+
+
+        Recommend_button = main_activity.findViewById(R.id.recommend_Button);
+        recyclerView = main_activity.findViewById(R.id.Recommend_rcy);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(rAdapter);
 
         Recommend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Server().onDb("http://54.180.109.133:4000/ing", null, main_this );
+                new Server().onDb("http://54.180.109.133:4000/test", null, main_this);
             }
         });
 
@@ -56,19 +58,36 @@ public class Recommend extends Fragment implements ServerResponse{
     public void processFinish(String output) {
 
         try {
-            JSONObject jsonObject = new JSONObject(output);
+            JSONArray jsonArray = new JSONArray(output);
 
-            for(int i=0; i < jsonObject.length(); i++){
-                String bookName;
-                bookName = jsonObject.toString();
-                recommend_items.add(new RecommendedBook(bookName));
+            recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title")
+                    , jsonArray.getJSONObject(0).getString("image_url")));
 
-            }
+            rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
+            recyclerView.setAdapter(rAdapter);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
+//        try {
+//            JSONArray jsonArray = new JSONArray(output);
+//
+//            for(int i=0; i < jsonArray.length(); i++){
+//
+//                recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title"),
+//                        jsonArray.getJSONObject(0).getString("image_url")));
+//
+//
+//            }
+//
+//            rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
+//            recyclerView.setAdapter(rAdapter);
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
     }

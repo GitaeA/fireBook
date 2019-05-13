@@ -1,5 +1,6 @@
 package com.mobitant.firebook;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,13 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class RecommendRecyclerViewAdapter extends RecyclerView.Adapter<RecommendRecyclerViewAdapter.ViewHolder> {
-
+    Activity activity;
     List<RecommendedBook> recommend_items;
 
-    public RecommendRecyclerViewAdapter(List<RecommendedBook> recommend_items) {
+    public RecommendRecyclerViewAdapter(Activity activity, List<RecommendedBook> recommend_items) {
+        this.activity = activity;
         this.recommend_items = recommend_items;
     }
 
@@ -45,7 +49,9 @@ public class RecommendRecyclerViewAdapter extends RecyclerView.Adapter<Recommend
     public void onBindViewHolder(@NonNull RecommendRecyclerViewAdapter.ViewHolder viewHolder, int i) {
         RecommendedBook data = recommend_items.get(i);
 
+
         viewHolder.recommend_bookName.setText(data.getName());
+        Glide.with(activity).load(data.getImage_url()).into(viewHolder.recommend_bookImage);
 
 
     }
