@@ -21,7 +21,7 @@ import java.util.List;
 public class Recommend extends Fragment implements ServerResponse {
 
     String text;
-    Button Recommend_button;
+    //Button Recommend_button;
     RecommendRecyclerViewAdapter rAdapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -36,7 +36,7 @@ public class Recommend extends Fragment implements ServerResponse {
 
         View main_activity = inflater.inflate(R.layout.fragment_recommend, container, false);
 
-
+        Button Recommend_button;
         Recommend_button = main_activity.findViewById(R.id.recommend_Button);
         recyclerView = main_activity.findViewById(R.id.Recommend_rcy);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -45,7 +45,7 @@ public class Recommend extends Fragment implements ServerResponse {
         Recommend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Server().onDb("http://54.180.109.133:4000/test", null, main_this);
+                new Server().onDb("http://54.180.109.133:4000/test",null,main_this);
             }
         });
 
