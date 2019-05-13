@@ -25,26 +25,27 @@ import java.util.List;
 
 import static com.mobitant.firebook.Sale.recyclerView;
 
-public class MainActivity extends AppCompatActivity implements ServerResponse{
-
+public class MainActivity extends AppCompatActivity implements ServerResponse {
+    String barcode_result;
     List<BookCompo> compo = new ArrayList<>();
     public SaleRecyclerViewAdapter recyclerViewAdapter;
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 
         // QR코드/ 바코드를 스캔한 결과
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-       String barcode_result = result.getContents();
-        Log.i("test",barcode_result);
+        barcode_result = result.getContents();
+        Log.i("test", barcode_result);
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("key", "7EF192D7C7D2600470252980FD233757C69B747264C145A0255E78ADB51650F9");
         parameter.put("query", barcode_result);
-        parameter.put("queryType","isbn");
+        parameter.put("queryType", "isbn");
         parameter.put("output", "json");
         new Server().onDb("https://book.interpark.com/api/search.api", parameter, this);
     }
+
     // FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
     public FragmentManager fragmentManager = getSupportFragmentManager();
     // 4개의 메뉴에 들어갈 Fragment들
@@ -111,10 +112,11 @@ public class MainActivity extends AppCompatActivity implements ServerResponse{
                         arrItem.getJSONObject(i).getString("title"),
                         arrItem.getJSONObject(i).getString("priceStandard"),
                         arrItem.getJSONObject(i).getString("publisher"),
-                        arrItem.getJSONObject(i).getString("author")
+                        arrItem.getJSONObject(i).getString("author"),
+                        barcode_result
                 ));
             }
-        Log.i("ser", arrItem.getJSONObject(0).getString("title"));
+            Log.i("ser", arrItem.getJSONObject(0).getString("title"));
             recyclerViewAdapter = new SaleRecyclerViewAdapter(this, compo);
             recyclerView.setAdapter(recyclerViewAdapter);
 

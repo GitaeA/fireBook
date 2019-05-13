@@ -57,7 +57,8 @@ public class Sale extends Fragment implements ServerResponse {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 recyclerView.clearDisappearingChildren();
             }
-    //
+
+            //
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -90,7 +91,6 @@ public class Sale extends Fragment implements ServerResponse {
         });
 
 
-
         return root;
 
     }
@@ -111,7 +111,8 @@ public class Sale extends Fragment implements ServerResponse {
                         arrItem.getJSONObject(i).getString("title"),
                         arrItem.getJSONObject(i).getString("priceStandard"),
                         arrItem.getJSONObject(i).getString("publisher"),
-                        arrItem.getJSONObject(i).getString("author")
+                        arrItem.getJSONObject(i).getString("author"),
+                        arrItem.getJSONObject(i).getString("isbn")
                 ));
             }
 

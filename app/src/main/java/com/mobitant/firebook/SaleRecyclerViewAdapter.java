@@ -35,6 +35,7 @@ public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerVi
         private TextView book_price;
         private TextView book_publish;
         private TextView book_author;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             book_image = itemView.findViewById(R.id.book_image);
