@@ -78,7 +78,7 @@ public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerVi
          viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Compo data = compo.get(i);
+                BookCompo data = compo.get(i);
 
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.frame_layout,new SaleClick());
