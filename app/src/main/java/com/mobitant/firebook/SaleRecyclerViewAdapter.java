@@ -16,6 +16,7 @@ import java.util.List;
 
 import static com.mobitant.firebook.MainActivity.fragmentManager;
 import static com.mobitant.firebook.MainActivity.transaction;
+import static com.mobitant.firebook.SaleClick.*;
 
 public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerViewAdapter.ViewHolder> {
     private Activity activity;
@@ -75,21 +76,26 @@ public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerVi
         viewHolder.book_author.setText(data.getBook_author());
         viewHolder.book_publish.setText(data.getBook_publish());
 
-         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BookCompo data = compo.get(i);
+                bookBarcode = data.getBarcode();
+                bookAuthor = data.getBook_author();
+                bookImage = data.getImage_url();
+                bookPublish = data.getBook_publish();
+                bookTitle = data.getBook_text();
+                bookPrice = data.getBook_price();
 
-                transaction=fragmentManager.beginTransaction();
-                transaction.replace(R.id.frame_layout,new SaleClick());
+
+                transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.frame_layout, new SaleClick());
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
     }
-           //   click event
-
-
+    //   click event
 
 
     private void removeItemView(int position) {
