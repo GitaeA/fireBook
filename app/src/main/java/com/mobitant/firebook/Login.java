@@ -19,7 +19,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
     EditText editText;
     EditText editText2;
     Button button;
-    String sid;
+   static String sid;
     String spw;
 
     @Override
@@ -57,9 +57,13 @@ public class Login extends AppCompatActivity implements ServerResponse{
         try {
             JSONArray jsonArray= new JSONArray(output);
            if(jsonArray.getJSONObject(0).getString("pw").equals(spw)){
+               //아이디에 맞는 key pw값을 받와와 로그인 값 비교
                Toast.makeText(getApplicationContext(),"로그인 완료",Toast.LENGTH_LONG).show();
                Intent intent = new Intent(Login.this,MainActivity.class);
                startActivity(intent);
+           }
+           else{
+               Toast.makeText(getApplicationContext(),"아이디와 비밀번호를 확인하세요.",Toast.LENGTH_LONG).show();
            }
 
 
