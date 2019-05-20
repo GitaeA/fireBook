@@ -14,7 +14,7 @@
         <activity android:name=".Login">
         <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" /> //시작하고싶은 화면 먼저 시작
+        <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
