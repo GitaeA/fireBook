@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -24,11 +25,11 @@ public class SaleClick extends Fragment implements ServerResponse {
     public static String bookAuthor;
     public static String bookImage;
     public static String bookPrice;
-    private EditText barcodeEditText;
-    private EditText bookTitleEditText;
-    private EditText bookPublishEditText;
-    private EditText bookAuthorEditText;
-    private EditText bookPriceEditText ;
+    private TextView barcodeTextView;
+    private TextView bookTitleTextView;
+    private TextView bookPublishTextView;
+    private TextView bookAuthorTextView;
+    private TextView bookPriceTextView ;
     private ImageView bookImageView;
     private Spinner bookLanguageSpinner;
     public static Context context_list; //Spinner context
@@ -39,27 +40,27 @@ public class SaleClick extends Fragment implements ServerResponse {
 
         View root = inflater.inflate(R.layout.fragment_sale_click, container, false);
 
-        barcodeEditText = root.findViewById(R.id.edit_barcode);
-        bookTitleEditText = root.findViewById(R.id.edit_title);
-        bookPublishEditText = root.findViewById(R.id.edit_publish);
-        bookAuthorEditText = root.findViewById(R.id.edit_author);
-        bookPriceEditText = root.findViewById(R.id.edit_price);
+        barcodeTextView = root.findViewById(R.id.edit_barcode);
+        bookTitleTextView = root.findViewById(R.id.edit_title);
+        bookPublishTextView = root.findViewById(R.id.edit_publish);
+        bookAuthorTextView = root.findViewById(R.id.edit_author);
+        bookPriceTextView = root.findViewById(R.id.edit_price);
         bookImageView = root.findViewById(R.id.book_image);
         bookLanguageSpinner = root.findViewById(R.id.book_language);
 
         Glide.with(this).load(bookImage).into(bookImageView);  //이미지 뷰 세팅
 
         //사용자가 Sale fragment에서 검색하여 클릭한 책 setting
-        bookTitleEditText.setText(bookTitle);
-        barcodeEditText.setText(bookBarcode);
-        bookPublishEditText.setText(bookPublish);
-        bookAuthorEditText.setText(bookAuthor);
-        bookPriceEditText.setText(bookPrice);
+        bookTitleTextView.setText(bookTitle);
+        barcodeTextView.setText(bookBarcode);
+        bookPublishTextView.setText(bookPublish);
+        bookAuthorTextView.setText(bookAuthor);
+        bookPriceTextView.setText(bookPrice);
 
         //Spinner setting
 
         ArrayList<String> booklist = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleClick.context_list, android.R.layout.simple_spinner_item, booklist);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, booklist);
         booklist.add("eng");
         booklist.add("kor");
         booklist.add("etc");
