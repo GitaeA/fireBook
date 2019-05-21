@@ -19,6 +19,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
     EditText editText;
     EditText editText2;
     Button button;
+    Button button2;
    static String sid;
     String spw;
 
@@ -30,11 +31,19 @@ public class Login extends AppCompatActivity implements ServerResponse{
         setContentView(R.layout.login);
         editText = (EditText)findViewById(R.id.editText);
         editText2 = (EditText)findViewById(R.id.editText2);
-        button = (Button)findViewById(R.id.button2);
+        button = (Button)findViewById(R.id.loginBtn);
+        button2=(Button)findViewById(R.id.joinBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bt_login();
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this,Join.class);
+                startActivity(intent);
             }
         });
     }

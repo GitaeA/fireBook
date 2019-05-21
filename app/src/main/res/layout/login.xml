@@ -7,18 +7,18 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="526dp"
         android:layout_marginBottom="157dp"
-        android:text="Button"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.318"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView4"
@@ -82,8 +82,22 @@
         android:layout_marginBottom="126dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/loginBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <Button
+        android:id="@+id/joinBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="158dp"
+        android:text="Join us"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 </android.support.constraint.ConstraintLayout>
