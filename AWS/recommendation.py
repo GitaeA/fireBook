@@ -76,8 +76,20 @@ recommend_result = recommend(sys.argv[1], matrix, 10)
 # Dataframe
 pdRecommend = pd.DataFrame(recommend_result, columns = ['Title', 'Correlation'])
 
-# Json conversion , book name and image_url
+
+# Json conversion , book name and image_url 
+df = pd.DataFrame(columns=("title", "image_url"))
+
 for i in range(len(pdRecommend)):
     book_name = recommend_result[i][0]
     book_url = books[books['title'].isin([book_name])]
-    print(book_url[['title','image_url']].to_json(orient='table'))
+    temp = book_url[['title','image_url']]
+    df = pd.concat([temp,df])
+
+df2 = df[::-1]
+
+result = df2[['title','image_url']].to_json(orient='records')
+result = json.loads(result)
+result = json.dumps(result)
+
+print(result)
