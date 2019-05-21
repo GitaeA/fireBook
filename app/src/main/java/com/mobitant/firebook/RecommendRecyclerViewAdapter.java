@@ -49,10 +49,8 @@ public class RecommendRecyclerViewAdapter extends RecyclerView.Adapter<Recommend
     public void onBindViewHolder(@NonNull RecommendRecyclerViewAdapter.ViewHolder viewHolder, int i) {
         RecommendedBook data = recommend_items.get(i);
 
-
         viewHolder.recommend_bookName.setText(data.getName());
         Glide.with(activity).load(data.getImage_url()).into(viewHolder.recommend_bookImage);
-
 
     }
 
