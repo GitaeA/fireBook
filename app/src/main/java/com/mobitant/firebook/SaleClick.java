@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class SaleClick extends Fragment implements ServerResponse {
-    public static String bookBarcode ;
+    public static String bookBarcode;
     public static String bookTitle;
     public static String bookPublish;
     public static String bookAuthor;
@@ -29,10 +30,11 @@ public class SaleClick extends Fragment implements ServerResponse {
     private TextView bookTitleTextView;
     private TextView bookPublishTextView;
     private TextView bookAuthorTextView;
-    private TextView bookPriceTextView ;
+    private TextView bookPriceTextView;
     private ImageView bookImageView;
     private Spinner bookLanguageSpinner;
-    public static Context context_list; //Spinner context
+    private Spinner bookDeliverSpinner;
+    private int deliverCase;
 
     @Nullable
     @Override
@@ -47,7 +49,7 @@ public class SaleClick extends Fragment implements ServerResponse {
         bookPriceTextView = root.findViewById(R.id.edit_price);
         bookImageView = root.findViewById(R.id.book_image);
         bookLanguageSpinner = root.findViewById(R.id.book_language);
-
+        bookDeliverSpinner = root.findViewById(R.id.deliver_spinner);
         Glide.with(this).load(bookImage).into(bookImageView);  //이미지 뷰 세팅
 
         //사용자가 Sale fragment에서 검색하여 클릭한 책 setting
@@ -69,6 +71,30 @@ public class SaleClick extends Fragment implements ServerResponse {
         booklist.add("en-CA");
         bookLanguageSpinner.setAdapter(adapter);
 
+        ArrayList<String> bookDeliver = new ArrayList<>();
+        ArrayAdapter<String> deliverAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, bookDeliver);
+
+        bookDeliver.add("직거래");
+        bookDeliver.add("택배거래");
+
+
+        bookDeliverSpinner.setAdapter(deliverAdapter);
+
+        bookDeliverSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if ((bookDeliverSpinner.getSelectedItem().toString()).equals("직거래")) //판매자가 spinner에서 선택한 값
+                    deliverCase = 1;        //직거래  DB table에 넘겨줄 숫자
+                else
+                    deliverCase = 2;  //택배거래
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         return root;
