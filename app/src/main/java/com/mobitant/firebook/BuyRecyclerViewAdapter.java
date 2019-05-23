@@ -43,7 +43,7 @@ public class BuyRecyclerViewAdapter extends RecyclerView.Adapter<BuyRecyclerView
         viewHolder.mState.setText(data.getState());
         viewHolder.mPublisher.setText(data.getPublisher());
         viewHolder.mPrice.setText(data.getPrice());
-        Glide.with(activity).load(data.getImage_url()).into(viewHolder.mBook_image);
+        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.mBook_image);
 
 
 

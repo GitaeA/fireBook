@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Buy extends Fragment implements ServerResponse{
+public class Buy extends Fragment implements ServerResponse {
 
     EditText search_content;
     BuyRecyclerViewAdapter buyRecyclerViewAdapter;
@@ -58,17 +61,38 @@ public class Buy extends Fragment implements ServerResponse{
         return main_activity;
     }
 
-    public void search_click(){
+    public void search_click() {
         mSearch = search_content.getText().toString();
-        HashMap<String,String> buy_search = new HashMap<>();
-        buy_search.put("search",mSearch);
-        new Server().onDb("http://54.180.109.133:4000/search", buy_search,  buy);
+        HashMap<String, String> buy_search = new HashMap<>();
+        buy_search.put("search", mSearch);
+        new Server().onDb("http://54.180.109.133:4000/search", buy_search, buy);
 
     }
 
 
     @Override
     public void processFinish(String output) {
+
+        try {
+            JSONArray jsonArray = new JSONArray(output);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                booksList.add(new Books(jsonArray.getJSONObject(i).getString("title"),
+                        jsonArray.getJSONObject(i).getString("image_url"),
+                        jsonArray.getJSONObject(i).getString("publisher"),
+                        jsonArray.getJSONObject(i).getString("authors"),
+                        jsonArray.getJSONObject(i).getString("state"),
+                        jsonArray.getJSONObject(i).getString("price")));
+
+            }
+
+            buyRecyclerViewAdapter = new BuyRecyclerViewAdapter(getActivity(), booksList);
+            recyclerView.setAdapter(buyRecyclerViewAdapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 }
