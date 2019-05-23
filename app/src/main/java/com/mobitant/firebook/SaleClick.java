@@ -1,6 +1,7 @@
 package com.mobitant.firebook;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SaleClick extends Fragment implements ServerResponse {
     public static String bookBarcode;
@@ -26,6 +29,7 @@ public class SaleClick extends Fragment implements ServerResponse {
     public static String bookAuthor;
     public static String bookImage;
     public static String bookPrice;
+    public static int book_id = 5343;
     private TextView barcodeTextView;
     private TextView bookTitleTextView;
     private TextView bookPublishTextView;
@@ -34,7 +38,16 @@ public class SaleClick extends Fragment implements ServerResponse {
     private ImageView bookImageView;
     private Spinner bookLanguageSpinner;
     private Spinner bookDeliverSpinner;
-    private int deliverCase;
+    public int deliverCase;
+    private EditText bookSalePriceEditText;
+    private Button state1;
+    private Button state2;
+    private Button state3;
+    private Button state4;
+    private TextView stateTextView;
+    public int bookState;
+    private EditText memoEditText;
+    private Button enrollmentButton;
 
     @Nullable
     @Override
@@ -50,6 +63,14 @@ public class SaleClick extends Fragment implements ServerResponse {
         bookImageView = root.findViewById(R.id.book_image);
         bookLanguageSpinner = root.findViewById(R.id.book_language);
         bookDeliverSpinner = root.findViewById(R.id.deliver_spinner);
+        bookSalePriceEditText = root.findViewById(R.id.edit_sale_price);
+        state1 = root.findViewById(R.id.choi_btn);
+        state2 = root.findViewById(R.id.upper_btn);
+        state3 = root.findViewById(R.id.middle_btn);
+        state4 = root.findViewById(R.id.down_btn);
+        stateTextView = root.findViewById(R.id.state_textview);
+        enrollmentButton = root.findViewById(R.id.enrollment_btn);
+        memoEditText = root.findViewById(R.id.edit_memo);
         Glide.with(this).load(bookImage).into(bookImageView);  //이미지 뷰 세팅
 
         //사용자가 Sale fragment에서 검색하여 클릭한 책 setting
@@ -58,6 +79,7 @@ public class SaleClick extends Fragment implements ServerResponse {
         bookPublishTextView.setText(bookPublish);
         bookAuthorTextView.setText(bookAuthor);
         bookPriceTextView.setText(bookPrice);
+
 
         //Spinner setting
 
@@ -95,6 +117,77 @@ public class SaleClick extends Fragment implements ServerResponse {
 
             }
         });
+
+        state1.setBackgroundColor(Color.BLUE);
+        state2.setBackgroundColor(Color.GRAY);
+        state3.setBackgroundColor(Color.GRAY);
+        state4.setBackgroundColor(Color.GRAY);
+
+
+
+        state1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stateTextView.setText("새 상품같이 깨끗한 상품");
+                bookState = 1;
+                state1.setBackgroundColor(Color.BLUE);
+                state2.setBackgroundColor(Color.GRAY);
+                state3.setBackgroundColor(Color.GRAY);
+                state4.setBackgroundColor(Color.GRAY);
+            }
+        });
+
+        state2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stateTextView.setText("사용흔적이 약간 있으나,비교적 깨끗한 상품");
+                state1.setBackgroundColor(Color.GRAY);
+                state2.setBackgroundColor(Color.BLUE);
+                state3.setBackgroundColor(Color.GRAY);
+                state4.setBackgroundColor(Color.GRAY);
+                bookState = 2;
+            }
+        });
+
+        state3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stateTextView.setText("사용흔적 많으나, 손상 없는 상품");
+                bookState = 3;
+                state1.setBackgroundColor(Color.GRAY);
+                state2.setBackgroundColor(Color.GRAY);
+                state3.setBackgroundColor(Color.BLUE);
+                state4.setBackgroundColor(Color.GRAY);
+            }
+        });
+
+        state4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stateTextView.setText("사용흔적이 많고, 손상이 있는 상품");
+                bookState = 4;
+                state1.setBackgroundColor(Color.GRAY);
+                state2.setBackgroundColor(Color.GRAY);
+                state3.setBackgroundColor(Color.GRAY);
+                state4.setBackgroundColor(Color.BLUE);
+            }
+        });
+
+        enrollmentButton.setOnClickListener(new View.OnClickListener() {  //최종등록
+            @Override
+            public void onClick(View v) {
+
+                HashMap<String, String> parameter = new HashMap<>();
+                parameter.put("sid",Login.sid);  // 회원 아이디
+                parameter.put("book_id",String.valueOf(book_id));
+
+
+
+
+                        book_id++;
+            }
+        });
+
 
 
         return root;
