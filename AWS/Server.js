@@ -73,3 +73,14 @@ app.get('/logintest', (req, res) => {
 
 });
 
+app.get('/search', (req, res) => {
+        db.connect(function (err, client, done) {
+                client.query(
+                         "select title, image_url, publisher, authors, price,state from books where title::text like '%" +req.query.search+"%'"
+                        , function(err, result) {
+                                done();
+                                res.send(result.rows);
+                                console.log('search'); // search
+                        });
+        });
+});
