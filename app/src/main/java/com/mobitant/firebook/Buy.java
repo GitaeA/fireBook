@@ -76,6 +76,8 @@ public class Buy extends Fragment implements ServerResponse {
         try {
             JSONArray jsonArray = new JSONArray(output);
 
+            booksList.clear();
+
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 booksList.add(new Books(jsonArray.getJSONObject(i).getString("title"),

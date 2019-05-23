@@ -74,6 +74,8 @@ public class Recommend extends Fragment implements ServerResponse {
         try {
             JSONArray jsonArray = new JSONArray(output);
 
+            recommend_items.clear();
+
             for(int i=0; i < jsonArray.length(); i++){
 
                 recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(i).getString("title"),
