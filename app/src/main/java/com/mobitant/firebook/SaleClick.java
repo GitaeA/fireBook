@@ -48,7 +48,7 @@ public class SaleClick extends Fragment implements ServerResponse {
     public int bookState;
     private EditText memoEditText;
     private Button enrollmentButton;
-
+    SaleClick thiss = this;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -124,7 +124,6 @@ public class SaleClick extends Fragment implements ServerResponse {
         state4.setBackgroundColor(Color.GRAY);
 
 
-
         state1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,16 +177,23 @@ public class SaleClick extends Fragment implements ServerResponse {
             public void onClick(View v) {
 
                 HashMap<String, String> parameter = new HashMap<>();
-                parameter.put("sid",Login.sid);  // 회원 아이디
-                parameter.put("book_id",String.valueOf(book_id));
+                parameter.put("sid", Login.sid);  // 회원 아이디
+                parameter.put("book_id", String.valueOf(book_id));
+                parameter.put("isbn", bookBarcode);
+                parameter.put("authors", bookAuthor);
+                parameter.put("title", bookTitle);
+                parameter.put("language", bookLanguageSpinner.getSelectedItem().toString());
+                parameter.put("image", bookImage);
+                parameter.put("memo", memoEditText.getText().toString());
+                parameter.put("price", bookSalePriceEditText.getText().toString());
+                parameter.put("publish", bookPublish);
+                parameter.put("state", String.valueOf(bookState));
+                parameter.put("deliver", String.valueOf(deliverCase));
 
-
-
-
-                        book_id++;
+                new Server().onDb("http://54.180.109.133:4000/sale",parameter,thiss);
+                book_id++;
             }
         });
-
 
 
         return root;
