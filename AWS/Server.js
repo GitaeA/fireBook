@@ -88,8 +88,8 @@ app.get('/search', (req, res) => {
 app.get('/sale', (req, res) => {
 	db.connect(function (err, client, done) {
 		client.query(
-			'insert into books values(' + req.query.sid + ',' + req.query.book_id + ' ,' + req.query.isbn + ' ,\'' + req.query.authors + '\' ,\'' + req.query.title + '\' ,\'' + req.query.language + '\' ' 
-			+ ' ,\'' + req.query.image + '\' ,\'' + req.query.memo + '\' ,\'' + req.query.price + '\' ,\'' + req.query.publish + '\',' + req.query.state + ',' + req.query.deliver + ') '
+			'insert into books values(' + req.query.book_id + ' ,' + req.query.isbn + ' ,\'' + req.query.authors + '\' ,\'' + req.query.title + '\' ,\'' + req.query.language + '\' ' 
+			+ ' ,\'' + req.query.image + '\' ,\'' + req.query.memo + '\' ,\'' + req.query.price + '\' ,\'' + req.query.publish + '\',' + req.query.state + ',' + req.query.deliver + ',\'' + req.query.sid + '\') '
 			, function (err, result) {
 				done();
 				res.send(result.rows);
@@ -98,3 +98,5 @@ app.get('/sale', (req, res) => {
 	});
 
 });
+
+
