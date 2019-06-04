@@ -70,7 +70,7 @@ public class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleRecyclerVi
         //data setting! haha hoho
         //  viewHolder.book_test.setText(data.getImage_url());
 //        Glide.with(activity).load(data.getImage_url()).into(viewHolder.book_image);
-        Glide.with(activity).load(data.getImage_url()).into(viewHolder.book_image);
+        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.book_image);
         viewHolder.book_title.setText(data.getBook_text());
         viewHolder.book_price.setText(data.getBook_price() + "원");
         viewHolder.book_author.setText(data.getBook_author());
