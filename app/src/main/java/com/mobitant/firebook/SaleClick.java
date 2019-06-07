@@ -88,7 +88,7 @@ public class SaleClick extends Fragment implements ServerResponse {
         ArrayList<String> booklist = new ArrayList<>();
 
         if(null == getActivity()) {
-            throw new IllegalStateException(); 
+            throw new IllegalStateException();
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, booklist);
