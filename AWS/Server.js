@@ -63,7 +63,7 @@ app.get('/jointest', (req, res) => {
 app.get('/logintest', (req, res) => {
         db.connect(function (err, client, done) {
                 client.query(
-                        'select pw from test_user where id=\'' + req.query.id + '\' '
+                        'select pw,phone,name from test_user where id=\'' + req.query.id + '\' '
                         , function (err, result) {
                                 done();
                                 res.send(result.rows);

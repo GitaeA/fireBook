@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ public class Login extends AppCompatActivity implements ServerResponse{
     Button button;
     Button button2;
    static String sid;
+    static String sphone;
+    static String snick;
 
     String spw;
 
@@ -66,6 +69,10 @@ public class Login extends AppCompatActivity implements ServerResponse{
 
         try {
             JSONArray jsonArray= new JSONArray(output);
+            sphone = jsonArray.getJSONObject(0).getString("phone");
+            snick = jsonArray.getJSONObject(0).getString("name");
+            Log.d("1",snick);
+            Log.d("1",sphone);
            if(jsonArray.getJSONObject(0).getString("pw").equals(spw)){
                //아이디에 맞는 key pw값을 받와와 로그인 값 비교
                Toast.makeText(getApplicationContext(),"로그인 완료",Toast.LENGTH_LONG).show();

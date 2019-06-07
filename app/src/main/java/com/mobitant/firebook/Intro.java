@@ -26,7 +26,7 @@ public class Intro extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 finish();
             }
-        }, 3100);
+        }, 100);
 
 
     }
