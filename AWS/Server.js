@@ -50,7 +50,7 @@ app.get('/ing', (req, res) => {
 app.get('/jointest', (req, res) => {
         db.connect(function (err, client, done) {
                 client.query(
-                        'insert into test_user values(\'' + req.query.id + '\',\'' + req.query.pw + '\') '
+                        'insert into test_user values(\'' + req.query.id + '\',\'' + req.query.pw + '\',\'' + req.query.nick + '\',\'' + req.query.phone + '\') '
                         , function (err, result) {
                                 done();
                                 res.send(result.rows);

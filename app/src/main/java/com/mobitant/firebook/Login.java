@@ -21,6 +21,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
     Button button;
     Button button2;
    static String sid;
+
     String spw;
 
     @Override

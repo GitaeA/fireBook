@@ -50,31 +50,33 @@ public class Join extends AppCompatActivity implements ServerResponse {
 
 
     }
-    public void bt_join(){
+    public void bt_join() {
         sid = id.getText().toString();
         spw = pw.getText().toString();
         spw2 = pw2.getText().toString();
         sphone = phone.getText().toString();
         snick = nick.getText().toString();
-        HashMap<String,String> user = new HashMap<>();
-        user.put("id",sid);
-        user.put("pw",spw);
-        user.put("pw2",spw2);
-        user.put("phone",sphone);
-        user.put("nick",snick); // 닉네임 폰번호 추가
+        HashMap<String, String> user = new HashMap<>();
+        user.put("id", sid);
+        user.put("pw", spw);
+        user.put("pw2", spw2);
+        user.put("nick", snick);
+        user.put("phone", sphone);
+        // 닉네임 폰번호 추가
 
-
-
-
-        if(spw.equals(spw2)&&!(spw.equals(""))){
-            new Server().onDb("http://54.180.107.154:4000/jointest", user,  main_this); //서버로 보내기
-            Toast.makeText(getApplicationContext(),"회원가입완료!",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Join.this,Login.class);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"아이디랑 비밀번호를 확인하세요.",Toast.LENGTH_LONG).show();
-        }
+       if(sid==null) {
+           Toast.makeText(getApplicationContext(), "아이디를 입력하세요!", Toast.LENGTH_LONG).show();
+    }
+       else{
+           if (spw.equals(spw2) && !(spw.equals(""))) {
+               new Server().onDb("http://54.180.107.154:4000/jointest", user, main_this); //서버로 보내기
+               Toast.makeText(getApplicationContext(), "회원가입완료!", Toast.LENGTH_LONG).show();
+               Intent intent = new Intent(Join.this, Login.class);
+               startActivity(intent);
+           } else {
+               Toast.makeText(getApplicationContext(), "아이디랑 비밀번호를 확인하세요.", Toast.LENGTH_LONG).show();
+           }
+       }
     }
 
     @Override
