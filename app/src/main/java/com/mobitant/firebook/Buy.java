@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Buy extends Fragment implements ServerResponse {
+public class Buy extends Fragment implements ServerResponse, BuyRecyclerViewAdapter.BuyRecyclerViewClickListener {
 
     EditText search_content;
     BuyRecyclerViewAdapter buyRecyclerViewAdapter;
@@ -96,5 +97,10 @@ public class Buy extends Fragment implements ServerResponse {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+        Toast.makeText(getContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
     }
 }

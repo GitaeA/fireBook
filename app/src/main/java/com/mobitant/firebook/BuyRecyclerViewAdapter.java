@@ -17,41 +17,11 @@ public class BuyRecyclerViewAdapter extends RecyclerView.Adapter<BuyRecyclerView
 
     Activity activity;
     List<Books> booksList;
+    private BuyRecyclerViewClickListener mListener;
 
     public BuyRecyclerViewAdapter(Activity activity, List<Books> booksList) {
         this.activity = activity;
         this.booksList = booksList;
-    }
-
-    @NonNull
-    @Override
-    public BuyRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.buy_item, viewGroup, false);
-
-        return new ViewHolder(v);
-
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull BuyRecyclerViewAdapter.ViewHolder viewHolder, int i) {
-
-        Books data = booksList.get(i);
-
-        viewHolder.mName.setText(data.getName());
-        viewHolder.mAuthor.setText(data.getAuthor());
-        viewHolder.mState.setText(data.getState());
-        viewHolder.mPublisher.setText(data.getPublisher());
-        viewHolder.mPrice.setText(data.getPrice());
-        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.mBook_image);
-
-
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return booksList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -71,11 +41,60 @@ public class BuyRecyclerViewAdapter extends RecyclerView.Adapter<BuyRecyclerView
             mPrice = itemView.findViewById(R.id.buy_price);
             mBook_image = itemView.findViewById(R.id.buy_image);
 
-
-
         }
     }
 
+    @NonNull
+    @Override
+    public BuyRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.buy_item, viewGroup, false);
+
+        return new ViewHolder(v);
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull BuyRecyclerViewAdapter.ViewHolder viewHolder, int position) {
+
+        Books data = booksList.get(position);
+
+        viewHolder.mName.setText(data.getName());
+        viewHolder.mAuthor.setText(data.getAuthor());
+        viewHolder.mState.setText(data.getState());
+        viewHolder.mPublisher.setText(data.getPublisher());
+        viewHolder.mPrice.setText(data.getPrice());
+        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.mBook_image);
+
+
+        //클릭 이벤트 구현
+        if(mListener != null){
+            final int pos = position;
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onItemClicked(pos);
+                }
+            });
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return booksList.size();
+    }
+
+
+
+    public interface BuyRecyclerViewClickListener {
+
+        void onItemClicked(int position);
+
+    }
+
+    public void setOnClickListener(BuyRecyclerViewClickListener listener){
+        mListener = listener;
+    }
 
 
 }
