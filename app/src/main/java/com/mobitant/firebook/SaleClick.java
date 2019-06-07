@@ -56,6 +56,7 @@ public class SaleClick extends Fragment implements ServerResponse {
     private Button enrollmentButton;
     private RatingBar ratingBar;
     SaleClick thiss = this;
+    float userRating;
 
 
     @Nullable
@@ -184,7 +185,15 @@ public class SaleClick extends Fragment implements ServerResponse {
             }
         });
 
-        ratingBar.getNumStars();
+        ratingBar.setStepSize((float) 1);
+        ratingBar.setRating((float) 2.5);
+        ratingBar.setIsIndicator(false);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                userRating = rating;
+            }
+        });
 
 
         enrollmentButton.setOnClickListener(new View.OnClickListener() {  //최종등록
@@ -211,7 +220,7 @@ public class SaleClick extends Fragment implements ServerResponse {
                 HashMap<String, String> parameter1 = new HashMap<>(); //rating
                 parameter1.put("book_id", String.valueOf(book_id));
                 parameter1.put("user_id", Login.sid);
-                parameter1.put("rating", String.valueOf(ratingBar.getNumStars()));
+                parameter1.put("rating", String.valueOf(userRating));
                 new Server().onDb("http://54.180.107.154:4000/sale", parameter, thiss);  // 판매 책 등록
 
                 new Server().onDb("http://54.180.107.154:4000/rate", parameter1, thiss);  //rating 삽입
