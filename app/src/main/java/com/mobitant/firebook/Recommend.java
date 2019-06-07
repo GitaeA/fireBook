@@ -82,6 +82,8 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
             rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
             recyclerView.setAdapter(rAdapter);
 
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gitaeback">
 
 
-
+    <TextView
+        android:id="@+id/text1111"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Bookking의 책 추천 목록"
+        android:textColor="@color/zxing_status_text"
+        app:autoSizeTextType="uniform" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_height="match_parent"
