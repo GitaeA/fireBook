@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
     public SaleRecyclerViewAdapter recyclerViewAdapter;
     public static FragmentManager fragmentManager;
     public static FragmentTransaction transaction;
+    ArrayList titleList = new ArrayList();
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
         transaction.replace(R.id.frame_layout, new Recommend());
         transaction.addToBackStack(null);
         transaction.commit();
+
 
         // bottomNavigationView의 아이템이 선택될 때 호출될 리스너 등록
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

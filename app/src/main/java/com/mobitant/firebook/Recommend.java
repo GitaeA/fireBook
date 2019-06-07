@@ -2,6 +2,8 @@ package com.mobitant.firebook;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,7 +34,7 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
     List<RecommendedBook> recommend_items = new ArrayList<>();
     SwipeRefreshLayout mSwipeRefreshLayout;
     HashMap<String, String> bookInfo = new HashMap<>();
-    ArrayList titleList = new ArrayList();
+    static ArrayList titleList = new ArrayList();
     String index;
     int randomNumber=0;
     int titleIndex;
@@ -45,10 +47,6 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
         View main_activity = inflater.inflate(R.layout.fragment_recommend, container, false);
 
 
-        Bundle bundle = this.getArguments();
-        if(bundle != null){
-            titleList = bundle.getStringArrayList("title");
-        }
         bookInfo.put("idTitle",Login.recommendTitle);
 
         new Server().onDb("http://54.180.107.154:4000/test",bookInfo,recommend);
@@ -116,12 +114,28 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
 
             @Override
             public void run() {
+
+                Random random = new Random();
+
+                int a = random.nextInt(titleList.size());
+
+
+                bookInfo.put("idTitle", (String) titleList.get(a));
+
                 new Server().onDb("http://54.180.107.154:4000/test",bookInfo,recommend);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         },5000);
 
     }
+
+    public Messenger getMessenger(){return messenger;}
+    private Messenger messenger = new Messenger(new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            titleList = (ArrayList) msg.obj; // 메시지를 수신하는 목적지 핸들러에 보낼 임의의 객체
+        }
+    });
 
 
 }

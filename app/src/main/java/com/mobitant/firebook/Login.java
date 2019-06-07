@@ -3,6 +3,9 @@ package com.mobitant.firebook;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,6 +33,8 @@ public class Login extends AppCompatActivity implements ServerResponse{
     static String sphone;
     static String snick;
     static String recommendTitle;
+    static int b;
+    Recommend recommend = new Recommend();
 
     public static ArrayList<String> getTitleList() {
         return titleList;
@@ -123,9 +128,20 @@ public class Login extends AppCompatActivity implements ServerResponse{
 
             Random random = new Random();
 
-            int b = random.nextInt(a);
+            b = random.nextInt(a);
 
             recommendTitle = titleList.get(b);
+
+            Messenger messenger =recommend.getMessenger();
+            Message msg = Message.obtain();
+            msg.obj = titleList; // 사진 주소 보내기
+            try {
+                messenger.send(msg);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();
