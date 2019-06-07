@@ -1,5 +1,6 @@
 package com.mobitant.firebook;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class Login extends AppCompatActivity implements ServerResponse{
     Login main_this = this;
@@ -27,7 +29,13 @@ public class Login extends AppCompatActivity implements ServerResponse{
    static String sid;
     static String sphone;
     static String snick;
-    ArrayList<String>  titleList = new ArrayList();
+    static String recommendTitle;
+
+    public static ArrayList<String> getTitleList() {
+        return titleList;
+    }
+
+    static ArrayList<String>  titleList = new ArrayList();
     String spw;
 
     @Override
@@ -53,6 +61,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
                 startActivity(intent);
             }
         });
+
     }
 
     public void bt_login(){
@@ -60,12 +69,13 @@ public class Login extends AppCompatActivity implements ServerResponse{
         spw = editText2.getText().toString();
         HashMap<String,String> user = new HashMap<>();
         user.put("id",sid);
+
+        new Server().onDb("http://54.180.107.154:4000/loadReadBook", user, main_this);
+
         new Server().onDb("http://54.180.107.154:4000/logintest", user,  main_this);
         if(spw.equals(0)){
 
         }
-
-        new Server().onDb("http://54.180.107.154:4000/loadReadBook", user, main_this);
 
     }
 
@@ -86,6 +96,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
                 Toast.makeText(getApplicationContext(),"로그인 완료",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Login.this,MainActivity.class);
                 startActivity(intent);
+
             }
             else{
                 Toast.makeText(getApplicationContext(),"아이디와 비밀번호를 확인하세요.",Toast.LENGTH_LONG).show();
@@ -102,17 +113,24 @@ public class Login extends AppCompatActivity implements ServerResponse{
         try {
             JSONArray jsonArray = new JSONArray(s);
 
+            int a=0;
 
-            for (int i = 0; i < jsonArray.length(); i++)
+            for (int i = 0; i < jsonArray.length(); i++){
                 titleList.add(jsonArray.getJSONObject(i).getString("title"));
+                a++;
+            }
 
+
+            Random random = new Random();
+
+            int b = random.nextInt(a);
+
+            recommendTitle = titleList.get(b);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
-
 
 
 

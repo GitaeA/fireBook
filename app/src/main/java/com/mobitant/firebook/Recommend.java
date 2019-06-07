@@ -19,7 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class Recommend extends Fragment implements ServerResponse, SwipeRefreshLayout.OnRefreshListener {
 
@@ -29,13 +31,28 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
     Recommend recommend = this ;
     List<RecommendedBook> recommend_items = new ArrayList<>();
     SwipeRefreshLayout mSwipeRefreshLayout;
+    HashMap<String, String> bookInfo = new HashMap<>();
+    ArrayList titleList = new ArrayList();
+    String index;
+    int randomNumber=0;
+    int titleIndex;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
-        new Server().onDb("http://54.180.107.154:4000/test",null,recommend);
+
 
         View main_activity = inflater.inflate(R.layout.fragment_recommend, container, false);
+
+
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            titleList = bundle.getStringArrayList("title");
+        }
+        bookInfo.put("idTitle",Login.recommendTitle);
+
+        new Server().onDb("http://54.180.107.154:4000/test",bookInfo,recommend);
+
 
         //Recommend_button = main_activity.findViewById(R.id.recommend_Button);
         recyclerView = main_activity.findViewById(R.id.Recommend_rcy);
@@ -94,11 +111,12 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
     @Override
     public void onRefresh() {
 
+
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                new Server().onDb("http://54.180.107.154:4000/test",null,recommend);
+                new Server().onDb("http://54.180.107.154:4000/test",bookInfo,recommend);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         },5000);
