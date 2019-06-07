@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_menu1"
-        android:icon="@android:drawable/ic_menu_call"
+        android:icon="@drawable/m1"
         android:title="추천" />
 
     <item
@@ -12,11 +12,11 @@
 
     <item
         android:id="@+id/navigation_menu3"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@android:drawable/ic_search_category_default"
         android:title="구매하기" />
 
     <item
         android:id="@+id/navigation_menu4"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="마이페이지" />
 </menu>
