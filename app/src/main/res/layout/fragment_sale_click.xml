@@ -287,18 +287,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="259dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="8dp"
+        android:isIndicator="false"
+        android:max="5"
+        android:numStars="5"
+        android:rating="3"
+        android:scrollbarSize="4dp"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+
     <EditText
         android:id="@+id/edit_memo"
         android:layout_width="360dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
         android:hint="판매할 도서의 특이사항을 적어주시면 구매자의 구매결정에 많은 도움이 됩니다."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/state_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar1" />
 
     <Button
         android:id="@+id/enrollment_btn"
@@ -312,6 +331,17 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_memo" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="79dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="236dp"
+        android:gravity="center"
+        android:text="책 평점"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -88,12 +88,26 @@ app.get('/search', (req, res) => {
 app.get('/sale', (req, res) => {
 	db.connect(function (err, client, done) {
 		client.query(
-			'insert into books values(' + req.query.book_id + ' ,' + req.query.isbn + ' ,\'' + req.query.authors + '\' ,\'' + req.query.title + '\' ,\'' + req.query.language + '\' ' 
-			+ ' ,\'' + req.query.image + '\' ,\'' + req.query.memo + '\' ,\'' + req.query.price + '\' ,\'' + req.query.publish + '\',' + req.query.state + ',' + req.query.deliver + ',\'' + req.query.sid + '\') '
+			'insert into books values(' + req.query.book_id + ' ,' + req.query.isbn + ' ,\'' + req.query.authors + '\' ,\'' + req.query.title + '\' ,\'' + req.query.language + '\' '
+			+ ' ,\'' + req.query.image + '\' ,\'' + req.query.memo + '\' ,\'' + req.query.price + '\' ,\'' + req.query.publish + '\',' + req.query.state + ',' + req.query.deliver + ',\'' + req.query.sid + '\',\'' + req.query.phone + '\') '
 			, function (err, result) {
 				done();
 				res.send(result.rows);
 				console.log('sale');   //join
+			});
+	});
+
+});
+
+app.get('/rate', (req, res) => {
+	db.connect(function (err, client, done) {
+		client.query(
+			'insert into ratings values(' + req.query.book_id + ', ' + req.query.user_id + ' ,' + req.query.rating +') '
+			
+			, function (err, result) {
+				done();
+				res.send(result.rows);
+				console.log('rate');   //join
 			});
 	});
 

@@ -15,11 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,13 +54,16 @@ public class SaleClick extends Fragment implements ServerResponse {
     public int bookState;
     private EditText memoEditText;
     private Button enrollmentButton;
+    private RatingBar ratingBar;
     SaleClick thiss = this;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_sale_click, container, false);
-
+        ratingBar = root.findViewById(R.id.ratingBar1);
         barcodeTextView = root.findViewById(R.id.edit_barcode);
         bookTitleTextView = root.findViewById(R.id.edit_title);
         bookPublishTextView = root.findViewById(R.id.edit_publish);
@@ -83,11 +90,9 @@ public class SaleClick extends Fragment implements ServerResponse {
         bookPriceTextView.setText(bookPrice);
 
 
-        //Spinner setting
-
         ArrayList<String> booklist = new ArrayList<>();
 
-        if(null == getActivity()) {
+        if (null == getActivity()) {
             throw new IllegalStateException();
         }
 
@@ -179,6 +184,9 @@ public class SaleClick extends Fragment implements ServerResponse {
             }
         });
 
+        ratingBar.getNumStars();
+
+
         enrollmentButton.setOnClickListener(new View.OnClickListener() {  //최종등록
             @Override
             public void onClick(View v) {
@@ -196,10 +204,19 @@ public class SaleClick extends Fragment implements ServerResponse {
                 parameter.put("publish", bookPublish);
                 parameter.put("state", String.valueOf(bookState));
                 parameter.put("deliver", String.valueOf(deliverCase));
+//                parameter.put("rating", String.valueOf(ratingBar.getNumStars()));  //평점
+                   parameter.put("phone", Login.sphone); // 폰번호
 
-                new Server().onDb("http://54.180.107.154:4000/sale",parameter,thiss);
+
+                HashMap<String, String> parameter1 = new HashMap<>(); //rating
+                parameter1.put("book_id", String.valueOf(book_id));
+                parameter1.put("user_id", Login.sid);
+                parameter1.put("rating", String.valueOf(ratingBar.getNumStars()));
+                new Server().onDb("http://54.180.107.154:4000/sale", parameter, thiss);  // 판매 책 등록
+
+                new Server().onDb("http://54.180.107.154:4000/rate", parameter1, thiss);  //rating 삽입
                 book_id++;
-                Toast.makeText(getContext(),"등록이 완료 되었습니다!!!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "등록이 완료 되었습니다!!!", Toast.LENGTH_LONG).show();
             }
         });
 
