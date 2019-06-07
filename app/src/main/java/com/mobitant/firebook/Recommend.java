@@ -20,8 +20,6 @@ import java.util.List;
 
 public class Recommend extends Fragment implements ServerResponse {
 
-    String text;
-    //Button Recommend_button;
     RecommendRecyclerViewAdapter rAdapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
@@ -42,7 +40,7 @@ public class Recommend extends Fragment implements ServerResponse {
         Recommend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Server().onDb("http://54.180.109.133:4000/test",null,recommend);
+                new Server().onDb("http://54.180.107.154:4000/test",null,recommend);
             }
         });
 
@@ -56,20 +54,6 @@ public class Recommend extends Fragment implements ServerResponse {
 
     @Override
     public void processFinish(String output) {
-
-//        try {
-//            JSONArray jsonArray = new JSONArray(output);
-//
-//            recommend_items.add(new RecommendedBook(jsonArray.getJSONObject(0).getString("title")
-//                    , jsonArray.getJSONObject(0).getString("image_url")));
-//
-//            rAdapter = new RecommendRecyclerViewAdapter(getActivity(), recommend_items);
-//            recyclerView.setAdapter(rAdapter);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
 
         try {
             JSONArray jsonArray = new JSONArray(output);
