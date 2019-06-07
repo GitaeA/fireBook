@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
         barcode_result = result.getContents();
         Log.i("test", barcode_result);
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("key", "7EF192D7C7D2600470252980FD233757C69B747264C145A0255E78ADB51650F9");
-        parameter.put("query", barcode_result);
-        parameter.put("queryType", "isbn");
-        parameter.put("output", "json");
-        new Server().onDb("https://book.interpark.com/api/search.api", parameter, this);
+        parameter.put("ttbkey", "ttbcjfsud231541001");
+        parameter.put("ItemId", barcode_result);
+        parameter.put("itemIdType", "ISBN13");
+        parameter.put("output", "JS");
+        new Server().onDb("http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx", parameter, this);
     }
 
 
@@ -117,11 +117,11 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
             JSONArray arrItem = objChannel.getJSONArray("item");
 
             for (int i = 0; i < arrItem.length(); i++) {
-                String front;
-                front = arrItem.getJSONObject(i).getString("coverLargeUrl").substring(0, 3) + "ps";
-                int len = arrItem.getJSONObject(i).getString("coverLargeUrl").length();
-                String back = arrItem.getJSONObject(i).getString("coverLargeUrl").substring(4, len);
-                compo.add(new BookCompo((front + back),
+//                String front;
+//                front = arrItem.getJSONObject(i).getString("cover").substring(0, 3) + "ps";
+//                int len = arrItem.getJSONObject(i).getString("cover").length();
+//                String back = arrItem.getJSONObject(i).getString("cover").substring(4, len);
+                compo.add(new BookCompo(arrItem.getJSONObject(i).getString("cover"),
                         arrItem.getJSONObject(i).getString("title"),
                         arrItem.getJSONObject(i).getString("priceStandard"),
                         arrItem.getJSONObject(i).getString("publisher"),

@@ -67,7 +67,7 @@ public class Buy extends Fragment implements ServerResponse, BuyRecyclerViewAdap
         mSearch = search_content.getText().toString();
         HashMap<String, String> buy_search = new HashMap<>();
         buy_search.put("search", mSearch);
-        new Server().onDb("http://54.180.107.154:4000/test", buy_search, buy);
+        new Server().onDb("http://54.180.107.154:4000/search", buy_search, buy);
 
     }
 
@@ -86,8 +86,9 @@ public class Buy extends Fragment implements ServerResponse, BuyRecyclerViewAdap
                         jsonArray.getJSONObject(i).getString("image_url"),
                         jsonArray.getJSONObject(i).getString("publisher"),
                         jsonArray.getJSONObject(i).getString("authors"),
+                        jsonArray.getJSONObject(i).getString("price"),
                         jsonArray.getJSONObject(i).getString("state"),
-                        jsonArray.getJSONObject(i).getString("price")));
+                        jsonArray.getJSONObject(i).getString("deliver")));
 
             }
 

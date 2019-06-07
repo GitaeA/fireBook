@@ -24,16 +24,16 @@ public class BuyRecyclerViewAdapter extends RecyclerView.Adapter<BuyRecyclerView
         this.booksList = booksList;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mName, mAuthor, mState, mPublisher, mPrice;
+        public TextView mName, mAuthor, mState, mPublisher, mPrice, mDeliver;
 
         public ImageView mBook_image;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            mDeliver = itemView.findViewById(R.id.buy_deliever);
             mName = itemView.findViewById(R.id.buy_name);
             mAuthor = itemView.findViewById(R.id.buy_author);
             mState = itemView.findViewById(R.id.buy_state);
@@ -61,14 +61,44 @@ public class BuyRecyclerViewAdapter extends RecyclerView.Adapter<BuyRecyclerView
 
         viewHolder.mName.setText(data.getName());
         viewHolder.mAuthor.setText(data.getAuthor());
-        viewHolder.mState.setText(data.getState());
+        switch (data.getState()) {
+            case "1":
+                viewHolder.mState.setText("책상태 : 최상");
+                break;
+            case "2":
+                viewHolder.mState.setText("책상태 : 상");
+                break;
+            case "3":
+                viewHolder.mState.setText("책상태 : 중");
+                break;
+            case "4":
+                viewHolder.mState.setText("책상태 : 하");
+                break;
+            case "NULL":
+                viewHolder.mState.setText("책상태 : 미등록");
+                break;
+        }
+        switch (data.getDeliever()) {
+            case "1":
+                viewHolder.mDeliver.setText("직거래");
+                break;
+            case "2":
+                viewHolder.mDeliver.setText("택배거래");
+                break;
+            case "NULL":
+                viewHolder.mDeliver.setText("미등록");
+                break;
+
+        }
+
+
         viewHolder.mPublisher.setText(data.getPublisher());
         viewHolder.mPrice.setText(data.getPrice());
-        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.mBook_image);
+        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300, 500).into(viewHolder.mBook_image);
 
 
         //클릭 이벤트 구현
-        if(mListener != null){
+        if (mListener != null) {
             final int pos = position;
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,14 +115,13 @@ public class BuyRecyclerViewAdapter extends RecyclerView.Adapter<BuyRecyclerView
     }
 
 
-
     public interface BuyRecyclerViewClickListener {
 
         void onItemClicked(int position);
 
     }
 
-    public void setOnClickListener(BuyRecyclerViewClickListener listener){
+    public void setOnClickListener(BuyRecyclerViewClickListener listener) {
         mListener = listener;
     }
 

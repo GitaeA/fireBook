@@ -72,6 +72,14 @@
                 android:gravity="right"
                 android:textSize="12dp" />
 
+            <TextView
+                android:id="@+id/buy_deliever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
         </LinearLayout>
 
 

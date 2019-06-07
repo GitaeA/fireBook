@@ -75,11 +75,16 @@ public class Sale extends Fragment implements ServerResponse {
             @Override
             public void onClick(View v) {
                 HashMap<String, String> parameter = new HashMap<>();
-             //   parameter.put("key", "7EF192D7C7D2600470252980FD233757C69B747264C145A0255E78ADB51650F9");
-                parameter.put("key","5311E683D5D7DFF35EA08512622C2591D9F4458E6C3D655225E4EEE76CD8B1BD");
-                parameter.put("query", search);
-                parameter.put("output", "json");
-                new Server().onDb("https://book.interpark.com/api/search.api", parameter, thiss);
+                //   parameter.put("key", "7EF192D7C7D2600470252980FD233757C69B747264C145A0255E78ADB51650F9");
+                parameter.put("ttbkey", "ttbcjfsud231541001");
+                parameter.put("Query", search);
+                parameter.put("QueryType", "Title");
+                parameter.put("MaxResults", "10");
+                parameter.put("start", "1");
+                parameter.put("SearchTarget", "Book");
+                parameter.put("Version", "20070901");
+                parameter.put("output", "JS");
+                new Server().onDb("http://www.aladin.co.kr/ttb/api/ItemSearch.aspx", parameter, thiss);
             }
         });
 
@@ -104,16 +109,16 @@ public class Sale extends Fragment implements ServerResponse {
             JSONArray arrItem = objChannel.getJSONArray("item");
 
             for (int i = 0; i < arrItem.length(); i++) {
-                String front;
-                front = arrItem.getJSONObject(i).getString("coverLargeUrl").substring(0, 3) + "ps";
-                int len = arrItem.getJSONObject(i).getString("coverLargeUrl").length();
-                String back = arrItem.getJSONObject(i).getString("coverLargeUrl").substring(4, len);
-                compo.add(new BookCompo((front + back),
+//                String front;
+//                front = arrItem.getJSONObject(i).getString("coverLargeUrl").substring(0, 3) + "ps";
+//                int len = arrItem.getJSONObject(i).getString("coverLargeUrl").length();
+//                String back = arrItem.getJSONObject(i).getString("coverLargeUrl").substring(4, len);
+                compo.add(new BookCompo(arrItem.getJSONObject(i).getString("cover"),
                         arrItem.getJSONObject(i).getString("title"),
                         arrItem.getJSONObject(i).getString("priceStandard"),
                         arrItem.getJSONObject(i).getString("publisher"),
                         arrItem.getJSONObject(i).getString("author"),
-                        arrItem.getJSONObject(i).getString("isbn")
+                        arrItem.getJSONObject(i).getString("isbn13")
                 ));
             }
 

@@ -8,16 +8,18 @@ public class Books {
     private String author;
     private String price;
     private String state;
-
-    public Books(String name, String image_url, String publisher, String author, String price, String state) {
+    private String deliver ; //택배거래
+    public Books(String name, String image_url, String publisher, String author, String price, String state, String deliver) {
         this.name = name;
         this.image_url = image_url;
         this.publisher = publisher;
         this.author = author;
         this.price = price;
         this.state = state;
+        this.deliver = deliver ;
     }
 
+    public String getDeliever(){return deliver;}
     public String getName() {
         return name;
     }
