@@ -86,6 +86,11 @@ public class SaleClick extends Fragment implements ServerResponse {
         //Spinner setting
 
         ArrayList<String> booklist = new ArrayList<>();
+
+        if(null == getActivity()) {
+            throw new IllegalStateException(); 
+        }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, booklist);
         booklist.add("eng");
         booklist.add("kor");
@@ -198,7 +203,7 @@ public class SaleClick extends Fragment implements ServerResponse {
             }
         });
 
-        http://54.180.107.154
+
         return root;
     }
 
