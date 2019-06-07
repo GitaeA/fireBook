@@ -6,14 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -88,7 +85,10 @@ public class Buy extends Fragment implements ServerResponse, BuyRecyclerViewAdap
                         jsonArray.getJSONObject(i).getString("authors"),
                         jsonArray.getJSONObject(i).getString("price"),
                         jsonArray.getJSONObject(i).getString("state"),
-                        jsonArray.getJSONObject(i).getString("deliver")));
+                        jsonArray.getJSONObject(i).getString("deliver"),
+                        jsonArray.getJSONObject(i).getString("phone"),
+                        jsonArray.getJSONObject(i).getString("memo")
+                ));
 
             }
 

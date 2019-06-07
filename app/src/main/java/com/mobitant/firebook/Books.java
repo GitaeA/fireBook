@@ -2,14 +2,16 @@ package com.mobitant.firebook;
 
 public class Books {
 
-    private String name;
-    private String image_url;
-    private String publisher;
-    private String author;
-    private String price;
-    private String state;
+    private String name;  //title
+    private String image_url; //image
+    private String publisher; // 출판사
+    private String author; //작가
+    private String price; // 판매가격
+    private String state; // 상태
     private String deliver ; //택배거래
-    public Books(String name, String image_url, String publisher, String author, String price, String state, String deliver) {
+    private String phone;
+    private String memo ;
+    public Books(String name, String image_url, String publisher, String author, String price, String state, String deliver,String phone,String memo) {
         this.name = name;
         this.image_url = image_url;
         this.publisher = publisher;
@@ -17,13 +19,15 @@ public class Books {
         this.price = price;
         this.state = state;
         this.deliver = deliver ;
+        this.phone = phone;
+        this.memo = memo;
     }
 
     public String getDeliever(){return deliver;}
     public String getName() {
         return name;
     }
-
+    public String getPhone(){return  phone;}
     public void setName(String name) {
         this.name = name;
     }
@@ -63,6 +67,8 @@ public class Books {
     public String getState() {
         return state;
     }
+
+    public String getMemo(){return memo;}
 
     public void setState(String state) {
         this.state = state;
