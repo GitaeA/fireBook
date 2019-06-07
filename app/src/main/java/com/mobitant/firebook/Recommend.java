@@ -42,7 +42,7 @@ public class Recommend extends Fragment implements ServerResponse {
         Recommend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Server().onDb("http://54.180.109.133:4000/test",null,recommend);
+                new Server().onDb("http://54.180.107.154:4000/test",null,recommend);
             }
         });
 

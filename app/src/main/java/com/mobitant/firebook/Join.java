@@ -67,7 +67,7 @@ public class Join extends AppCompatActivity implements ServerResponse {
 
 
         if(spw.equals(spw2)&&!(spw.equals(""))){
-            new Server().onDb("http://54.180.109.133:4000/jointest", user,  main_this); //서버로 보내기
+            new Server().onDb("http://54.180.107.154:4000/jointest", user,  main_this); //서버로 보내기
             Toast.makeText(getApplicationContext(),"회원가입완료!",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(Join.this,Login.class);
             startActivity(intent);

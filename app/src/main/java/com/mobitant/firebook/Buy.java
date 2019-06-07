@@ -66,7 +66,7 @@ public class Buy extends Fragment implements ServerResponse, BuyRecyclerViewAdap
         mSearch = search_content.getText().toString();
         HashMap<String, String> buy_search = new HashMap<>();
         buy_search.put("search", mSearch);
-        new Server().onDb("http://54.180.109.133:4000/search", buy_search, buy);
+        new Server().onDb("http://54.180.107.154:4000/search", buy_search, buy);
 
     }
 

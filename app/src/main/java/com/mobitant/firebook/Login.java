@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
         spw = editText2.getText().toString();
         HashMap<String,String> user = new HashMap<>();
         user.put("id",sid);
-        new Server().onDb("http://54.180.109.133:4000/logintest", user,  main_this);
+        new Server().onDb("http://54.180.107.154:4000/logintest", user,  main_this);
         if(spw.equals(0)){
 
         }
