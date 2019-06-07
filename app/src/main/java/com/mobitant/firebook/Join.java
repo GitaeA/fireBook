@@ -18,9 +18,13 @@ public class Join extends AppCompatActivity implements ServerResponse {
     EditText id;
     EditText pw;
     EditText pw2;
+    EditText phone; // 폰번호
+    EditText nick; // 닉네임 추가
     String sid;
     String spw;
     String spw2;
+    String sphone;
+    String snick;
     Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class Join extends AppCompatActivity implements ServerResponse {
         id = (EditText)findViewById(R.id.text_id);
         pw = (EditText)findViewById(R.id.text_pw);
         pw2=(EditText)findViewById(R.id.text_pw2);
+        phone=(EditText)findViewById(R.id.text_phone);
+        nick=(EditText)findViewById(R.id.text_nick);
         button = (Button)findViewById(R.id.Join);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -48,16 +54,20 @@ public class Join extends AppCompatActivity implements ServerResponse {
         sid = id.getText().toString();
         spw = pw.getText().toString();
         spw2 = pw2.getText().toString();
+        sphone = phone.getText().toString();
+        snick = nick.getText().toString();
         HashMap<String,String> user = new HashMap<>();
         user.put("id",sid);
         user.put("pw",spw);
         user.put("pw2",spw2);
+        user.put("phone",sphone);
+        user.put("nick",snick); // 닉네임 폰번호 추가
 
 
 
 
         if(spw.equals(spw2)&&!(spw.equals(""))){
-            new Server().onDb("http://54.180.109.133:4000/jointest", user,  main_this);
+            new Server().onDb("http://54.180.109.133:4000/jointest", user,  main_this); //서버로 보내기
             Toast.makeText(getApplicationContext(),"회원가입완료!",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(Join.this,Login.class);
             startActivity(intent);

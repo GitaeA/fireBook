@@ -96,7 +96,10 @@ public class MainActivity extends AppCompatActivity implements ServerResponse {
                         break;
                     }
                     case R.id.navigation_menu4: {
-                        // transaction.replace(R.id.frame_layout, menu4Fragment).commitAllowingStateLoss();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.frame_layout, new Mypage());
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                         break;
                     }
                 }
