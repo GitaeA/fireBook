@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -193,6 +194,7 @@ public class SaleClick extends Fragment implements ServerResponse {
 
                 new Server().onDb("http://54.180.109.133:4000/sale",parameter,thiss);
                 book_id++;
+                Toast.makeText(getContext(),"등록이 완료 되었습니다!!!",Toast.LENGTH_LONG).show();
             }
         });
 
