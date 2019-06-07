@@ -40,7 +40,7 @@ public class Sale extends Fragment implements ServerResponse {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_sale, container, false);
         recyclerView = root.findViewById(R.id.recycler);
@@ -92,7 +92,9 @@ public class Sale extends Fragment implements ServerResponse {
             @Override
             public void onClick(View v) {
 
-                new IntentIntegrator(getActivity()).initiateScan();
+                IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                integrator.setOrientationLocked(false); // 세로,가로 모드
+                integrator.initiateScan();
             }
         });
 
