@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Login extends AppCompatActivity implements ServerResponse{
     Login main_this = this;
@@ -24,7 +27,7 @@ public class Login extends AppCompatActivity implements ServerResponse{
    static String sid;
     static String sphone;
     static String snick;
-
+    ArrayList<String>  titleList = new ArrayList();
     String spw;
 
     @Override
@@ -62,32 +65,81 @@ public class Login extends AppCompatActivity implements ServerResponse{
 
         }
 
+        new Server().onDb("http://54.180.107.154:4000/loadReadBook", user, main_this);
+
     }
 
-    @Override
-    public void processFinish(String output) {
-
+    private void loginProcess(String s){
         try {
-            JSONArray jsonArray= new JSONArray(output);
-            sphone = jsonArray.getJSONObject(0).getString("phone");
+            JSONArray jsonArray= new JSONArray(s);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            sphone = jsonObject.optString("phone");
+            //sphone = jsonArray.getJSONObject(0).getString("phone");
+            //sphone = String.valueOf(jsonArray.getJSONObject(0).get("phone"));
             snick = jsonArray.getJSONObject(0).getString("name");
+            //snick = String.valueOf(jsonArray.getJSONObject(0).get("name"));
+
             Log.d("1",snick);
             Log.d("1",sphone);
-           if(jsonArray.getJSONObject(0).getString("pw").equals(spw)){
-               //아이디에 맞는 key pw값을 받와와 로그인 값 비교
-               Toast.makeText(getApplicationContext(),"로그인 완료",Toast.LENGTH_LONG).show();
-               Intent intent = new Intent(Login.this,MainActivity.class);
-               startActivity(intent);
-           }
-           else{
-               Toast.makeText(getApplicationContext(),"아이디와 비밀번호를 확인하세요.",Toast.LENGTH_LONG).show();
-           }
+            if(jsonArray.getJSONObject(0).getString("pw").equals(spw)){
+                //아이디에 맞는 key pw값을 받와와 로그인 값 비교
+                Toast.makeText(getApplicationContext(),"로그인 완료",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Login.this,MainActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"아이디와 비밀번호를 확인하세요.",Toast.LENGTH_LONG).show();
+            }
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
+
+    private void loadBookProcess(String s) {
+
+        try {
+            JSONArray jsonArray = new JSONArray(s);
+
+
+            for (int i = 0; i < jsonArray.length(); i++)
+                titleList.add(jsonArray.getJSONObject(i).getString("title"));
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+    @Override
+    public void processFinish(String output) {
+
+        JSONObject jObject = null;
+        try {
+            jObject = new JSONObject(output);
+            String code = jObject.getString("code");
+
+            switch (code) {
+                case "login":
+                    loginProcess(jObject.getString("data"));
+                    break;
+                case "loadBook":
+                    loadBookProcess(jObject.getString("data"));
+                    break;
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
+
+

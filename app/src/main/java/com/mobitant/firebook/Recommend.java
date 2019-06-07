@@ -1,6 +1,7 @@
 package com.mobitant.firebook;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,6 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
     LinearLayoutManager layoutManager;
     Recommend recommend = this ;
     List<RecommendedBook> recommend_items = new ArrayList<>();
-    Button Recommend_button;
     SwipeRefreshLayout mSwipeRefreshLayout;
     @Nullable
     @Override
@@ -93,9 +93,16 @@ public class Recommend extends Fragment implements ServerResponse, SwipeRefreshL
 
     @Override
     public void onRefresh() {
-        Log.d("Dd","dd");
-        new Server().onDb("http://54.180.107.154:4000/test",null,recommend);
-        mSwipeRefreshLayout.setRefreshing(false);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                new Server().onDb("http://54.180.107.154:4000/test",null,recommend);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        },5000);
+
     }
 
 
