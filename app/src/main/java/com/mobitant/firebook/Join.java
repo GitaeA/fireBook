@@ -32,10 +32,11 @@ public class Join extends AppCompatActivity implements ServerResponse {
         abr.hide(); // Hide Action bar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join);
+
+        phone=(EditText)findViewById(R.id.text_phone);
         id = (EditText)findViewById(R.id.text_id);
         pw = (EditText)findViewById(R.id.text_pw);
         pw2=(EditText)findViewById(R.id.text_pw2);
-        phone=(EditText)findViewById(R.id.text_phone);
         nick=(EditText)findViewById(R.id.text_nick);
         button = (Button)findViewById(R.id.Join);
 
