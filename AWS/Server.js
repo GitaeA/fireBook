@@ -113,4 +113,55 @@ app.get('/rate', (req, res) => {
 
 });
 
+app.get('/jang', (req, res) => {
+        db.connect(function (err, client, done) {
+           client.query(
+              'insert into jang2 values(\'' + req.query.title + '\' ,\'' + req.query.image + '\',\'' + req.query.phone + '\' ,' + req.query.price + ',\'' + req.query.user_id + '\') '
+     
+              , function (err, result) {
+                 done();
+                 res.send(result.rows);
+                 console.log('jang');   
+              });
+        });
+     
+     });
+     
+     
+     app.get('/mybuy', (req, res) => {  //장바구니
+        obj = new Object();
+        udm.connect(function (err, client, done) {
+           client.query(
+              'select jtitle,jimage,jphone,jprice from jang2 where juser_id=\'' + req.query.my_id + '\''
+              
+     
+              , function (err, result) {
+                 done();
+                 obj.code = "mybuy";
+                 obj.data = result.rows;
+                 res.send(JSON.stringify(obj));
+                 console.log('/mybuy');   
+              });
+        });
+     
+     });
+     
+     app.get('/mysale', (req, res) => {   //내가 판매 
+        obj = new Object();
+        udm.connect(function (err, client, done) {
+           client.query(
+              'select title,image_url,price,authors from books where user_id=\'' + req.query.my_id + '\' ' 
+              
+     
+              , function (err, result) {
+                 done();
+                 obj.code = "mysale";
+                 obj.data = result.rows;
+                 res.send(JSON.stringify(obj));
+                 console.log('/mysale');   
+              });
+        });
+     
+     });
+
 

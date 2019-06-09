@@ -2,10 +2,10 @@ package com.mobitant.firebook;
 
 
 public class BookCompo {
-    private String image_url;
-    private String book_text;
-    private String book_price;
-    private String book_publish;
+    private String image_url;  //책이미지
+    private String book_text; //책제목
+    private String book_price;   //가격
+    private String book_publish;   //마이페이에서의 판매자 번호, 내가 올린건 memo
     private String book_author;
     private String barcode;
 
@@ -18,6 +18,9 @@ public class BookCompo {
         this.book_author = book_author;
         this.barcode = barcode;
     }
+
+
+
 
 
     public String getImage_url() {

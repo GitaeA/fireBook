@@ -12,7 +12,7 @@
         app:cardUseCompatPadding="true">
 
         <ImageView
-            android:id="@+id/book_image"
+            android:id="@+id/page_image_my"
             android:layout_width="wrap_content"
             android:layout_height="240dp"
             android:layout_gravity="center"
@@ -32,7 +32,7 @@
             android:paddingBottom="8dp">
 
             <TextView
-                android:id="@+id/book_title"
+                android:id="@+id/book_title_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
                 android:textSize="12dp" />
 
             <TextView
-                android:id="@+id/book_author"
+                android:id="@+id/book_price_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -48,20 +48,13 @@
                 android:textSize="12dp" />
 
             <TextView
-                android:id="@+id/book_publish"
+                android:id="@+id/book_publish_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="12dp" />
 
-            <TextView
-                android:id="@+id/book_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:textColor="@android:color/white"
-                android:textSize="12dp" />
 
 
 

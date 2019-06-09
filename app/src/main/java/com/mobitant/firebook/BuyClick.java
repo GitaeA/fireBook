@@ -10,11 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-public class BuyClick extends Fragment implements ServerResponse {
+import java.util.HashMap;
 
+public class BuyClick extends Fragment implements ServerResponse {
+    BuyClick buyClick;
     static String buyTitle;
     static String buyImage;
     static String buyPublisher;
@@ -33,13 +36,14 @@ public class BuyClick extends Fragment implements ServerResponse {
     private TextView clickState;
     private TextView clickPhone;
     private TextView clickMemo;
-    private Button jang ;
+    private Button jang;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_buy_click, container, false);
         jang = root.findViewById(R.id.buy_click_btn);
+        buyClick = this;
         clickTitle = root.findViewById(R.id.buy_title_text);
         clickImage = root.findViewById(R.id.book_buy_image);
         clickPublisher = root.findViewById(R.id.buy_publish_text);
@@ -96,6 +100,14 @@ public class BuyClick extends Fragment implements ServerResponse {
             @Override
             public void onClick(View v) {
 
+                HashMap<String, String> parameter = new HashMap<>();
+                parameter.put("title", buyTitle);
+                parameter.put("image", buyImage);
+                parameter.put("price", buyPrice);
+                parameter.put("phone", buyPhone);
+                parameter.put("user_id", Login.sid);
+                new Server().onDb("http://54.180.107.154:4000/jang", parameter, buyClick);
+                Toast.makeText(getContext(), "장바구니에 들어 갔습니다!!", Toast.LENGTH_LONG).show();
             }
         });
 

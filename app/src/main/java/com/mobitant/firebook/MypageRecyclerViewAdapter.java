@@ -25,9 +25,9 @@ import static com.mobitant.firebook.SaleClick.bookTitle;
 public class MypageRecyclerViewAdapter extends RecyclerView.Adapter<MypageRecyclerViewAdapter.ViewHolder> {
 
     private Activity activity;
-    private List<BookCompo> myCompo;
+    private List<MyCompo> myCompo;
 
-    public MypageRecyclerViewAdapter(Activity activity, List<BookCompo> myCompo) {
+    public MypageRecyclerViewAdapter(Activity activity, List<MyCompo> myCompo) {
         this.activity = activity;
         this.myCompo = myCompo;
 
@@ -39,19 +39,19 @@ public class MypageRecyclerViewAdapter extends RecyclerView.Adapter<MypageRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView my_book_image;
-        private TextView my_book_title;
-        private TextView my_book_price;
-        private TextView my_book_publish;
-        private TextView my_book_author;
+        private ImageView page_image;
+        private TextView page_title;
+        private TextView page_price;
+        private TextView page_phone;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            book_image = itemView.findViewById(R.id.book_image);
-//            book_title = itemView.findViewById(R.id.book_title);
-//            book_price = itemView.findViewById(R.id.book_price);
-//            book_publish = itemView.findViewById(R.id.book_publish);
-//            book_author = itemView.findViewById(R.id.book_author);
+            page_image = itemView.findViewById(R.id.page_image_my);
+            page_title = itemView.findViewById(R.id.book_title_page);
+            page_price = itemView.findViewById(R.id.book_price_page);
+
+            page_phone = itemView.findViewById(R.id.book_publish_page);
+
         }
     }
 
@@ -67,20 +67,13 @@ public class MypageRecyclerViewAdapter extends RecyclerView.Adapter<MypageRecycl
 
     @Override
     public void onBindViewHolder(@NonNull MypageRecyclerViewAdapter.ViewHolder viewHolder, final int i) {
-        BookCompo data = myCompo.get(i);
+        MyCompo data = myCompo.get(i);
 
-        // 데이터 결합
-        // viewHolder.name.setText(data.getName());
 
-        //  oee = PC.getPieChart();
-        //data setting! haha hoho
-        //  viewHolder.book_test.setText(data.getImage_url());
-//        Glide.with(activity).load(data.getImage_url()).into(viewHolder.book_image);
-//        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.book_image);
-//        viewHolder.book_title.setText(data.getBook_text());
-//        viewHolder.book_price.setText(data.getBook_price() + "원");
-//        viewHolder.book_author.setText(data.getBook_author());
-//        viewHolder.book_publish.setText(data.getBook_publish());
+        Glide.with(activity).load(data.getImage_url()).centerCrop().override(300,500).into(viewHolder.page_image);
+        viewHolder.page_title.setText(data.getBook_text());
+        viewHolder.page_price.setText(data.getBook_price()+"원");
+        viewHolder.page_phone.setText(data.getBook_publish());
 
 
     }
