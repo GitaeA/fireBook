@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/gitaeback">
 
 
 <android.support.constraint.ConstraintLayout
@@ -30,6 +31,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:textColor="@color/zxing_status_text"
         android:text="출판사"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -42,6 +44,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="정가"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -53,6 +56,7 @@
         android:layout_marginTop="28dp"
         android:gravity="center"
         android:text="거래방법"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -64,6 +68,7 @@
         android:layout_marginTop="76dp"
         android:gravity="center"
         android:text="판매가격"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -75,6 +80,7 @@
         android:layout_marginTop="124dp"
         android:gravity="center"
         android:text="도서상태"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -86,6 +92,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="책언어"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -97,6 +104,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="저자명"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -108,6 +116,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="도서명"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -119,6 +128,7 @@
         android:layout_marginTop="348dp"
         android:gravity="center"
         android:text="ISBN"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,6 +137,7 @@
         android:layout_width="200dp"
         android:layout_height="33dp"
         android:layout_marginStart="52dp"
+        android:textColor="@color/zxing_status_text"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +152,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -151,6 +163,7 @@
         android:layout_width="200dp"
         android:layout_height="33dp"
         android:layout_marginStart="52dp"
+        android:textColor="@color/zxing_status_text"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,6 +178,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -176,6 +190,7 @@
         android:layout_height="33dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="348dp"
+        android:textColor="@color/zxing_status_text"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -187,6 +202,7 @@
         android:layout_width="200dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
+        android:textColor="@color/zxing_status_text"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,6 +217,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.593"
         app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -209,6 +226,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
+        android:textColor="@color/zxing_status_text"
         android:layout_height="4dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="32dp"
@@ -224,6 +242,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="80dp"
+        android:textColor="@color/zxing_status_text"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:hint="가격입력 ex)20000"
@@ -234,6 +253,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="220dp"
+
         android:layout_height="40dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="124dp"
@@ -247,23 +267,27 @@
             android:id="@+id/choi_btn"
             android:layout_width="55dp"
             android:layout_height="40dp"
+            android:textColor="@color/zxing_status_text"
             android:text="최상" />
 
         <Button
             android:id="@+id/upper_btn"
             android:layout_width="55dp"
             android:layout_height="40dp"
+            android:textColor="@color/zxing_status_text"
             android:text="상" />
 
         <Button
             android:id="@+id/middle_btn"
             android:layout_width="55dp"
             android:layout_height="40dp"
+            android:textColor="@color/zxing_status_text"
             android:text="중" />
 
         <Button
             android:id="@+id/down_btn"
             android:layout_width="55dp"
+            android:textColor="@color/zxing_status_text"
             android:layout_height="40dp"
             android:text="하" />
 
@@ -282,6 +306,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="새 상품같이 깨끗한 상품"
+        android:textColor="@color/zxing_status_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
@@ -313,6 +338,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/zxing_status_text"
         android:hint="판매할 도서의 특이사항을 적어주시면 구매자의 구매결정에 많은 도움이 됩니다."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
@@ -337,6 +363,7 @@
         android:layout_width="79dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
+        android:textColor="@color/zxing_status_text"
         android:layout_marginTop="236dp"
         android:gravity="center"
         android:text="책 평점"

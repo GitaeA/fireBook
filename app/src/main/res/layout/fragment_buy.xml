@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gitaeback"
     tools:context=".Buy">
 
     <LinearLayout
@@ -17,6 +18,7 @@
 
         <TextView
             android:id="@+id/도서검색"
+            android:textColor="@color/zxing_status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -38,6 +40,7 @@
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:hint="검색어를 입력해 주세요."
+
             />
     </LinearLayout>
 

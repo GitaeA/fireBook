@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gitaeback">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
@@ -34,6 +35,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:hint="검색어를 입력해 주세요"
+            android:textColor="@color/zxing_status_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +56,9 @@
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/barcode_search"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/search_button"
             app:layout_constraintTop_toTopOf="parent" />
 
