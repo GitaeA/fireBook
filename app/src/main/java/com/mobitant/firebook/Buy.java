@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -32,7 +33,7 @@ public class Buy extends Fragment implements ServerResponse, BuyRecyclerViewAdap
     LinearLayoutManager layoutManager;
     Buy buy = this;
     List<Books> booksList = new ArrayList<>();
-    Button buy_search_button;
+    ImageButton buy_search_button;
     String mSearch;
 
 
