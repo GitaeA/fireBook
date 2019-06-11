@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gitaeback">
+    android:background="@drawable/gitaeback"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="627dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="104dp"
         android:layout_marginTop="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/recycler"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/search_text"
@@ -36,38 +22,39 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:hint="검색어를 입력해 주세요"
-            android:textColor="@color/zxing_status_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/zxing_status_text" />
 
         <Button
             android:id="@+id/search_button"
-            android:layout_width="82dp"
+            android:layout_width="wrap_content"
             android:layout_height="51dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:background="@color/zxing_transparent"
-            android:text="Search"
-            app:layout_constraintEnd_toStartOf="@+id/barcode"
-            app:layout_constraintStart_toEndOf="@+id/search_text"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            android:text="Search" />
 
         <ImageButton
             android:id="@+id/barcode"
-            android:layout_width="122dp"
+            android:layout_width="wrap_content"
             android:layout_height="47dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="8dp"
             android:background="@color/zxing_transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/barcode"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/search_button"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/barcode" />
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="627dp" />
+    </LinearLayout>
+
+</LinearLayout>
